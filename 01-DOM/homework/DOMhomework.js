@@ -1,13 +1,13 @@
 // Crear un array vacío llamado 'toDoItems'
 // Tu codigo acá:
-
+    var toDoItems =[];
 
 // En la página 'index.html' hay un elemento span cuyo texto es 'Aplicación creada por:'.
 // Usando querySelector seleccionar dicho span por su id ('createdBy') y luego usando innerHTML
 // agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
 // Tu código acá:
 
-
+document.getElementById("createdBy").innerHTML= "Aplicacion creada por Jonathan"
 
 // Crear una clase denominada 'ToDo' cuyo constructor debe recibir un único parámetro del tipo string
 // con el nombre 'description' que será justamente la descripción del ToDo.
@@ -16,9 +16,13 @@
 // 2) 'complete'    : debe setearse en false
 // Ayuda: usar 'this' en el constructor
 
-function ToDo () {
-  // Tu código acá:
+class ToDo {
+  constructor(description) {
+    // Tu código acá:
+    this.description = description;
+    this.complete = false;
 
+  }
 }
 
 
@@ -28,7 +32,9 @@ function ToDo () {
 
 // Tu código acá:
 
-
+ToDo.prototype.completeToDo= function(){
+  this.complete=true;
+}
 
 // Agregar dos parámetros a la función 'buildToDo':
 //    1) Un objeto de la clase ToDo
@@ -48,9 +54,21 @@ function ToDo () {
 //    8) Devolver la variable toDoShell
 
 
-function buildToDo(todo, index) {
+function buildToDo(toDo, index) {
   // Tu código acá:
+    var toDoShell = document.createElement("div");
+    toDoShell.classList.add("toDoShell");
+    var toDoText =document.createElement("span");
+    toDoText.innerHTML= this.description;
+    toDoText.id= index;
 
+    if (this.complete){
+      toDoText.classList.add("completeText")
+    }
+
+    toDoText.parentElement = toDoShell;
+
+    return toDoShell;
 }
 
 // La función 'buildToDos' debe crear un array de objetos toDo y devolverlo
@@ -60,7 +78,16 @@ function buildToDo(todo, index) {
 
 function buildToDos(toDos) {
   // Tu código acá:
+  //var newArr = toDos.map(buildToDo())
+  var newArr =[];
+  
+    for (let i=0;i<toDos.length;i++){
+      var value= buildToDo(toDos[i])
+      newArr.push(value);
+    }
+  
 
+  return newArr;
 }
 
 
