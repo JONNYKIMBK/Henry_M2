@@ -59,14 +59,16 @@ function buildToDo(toDo, index) {
     var toDoShell = document.createElement("div");
     toDoShell.classList.add("toDoShell");
     var toDoText =document.createElement("span");
-    toDoText.innerHTML= this.description;
+    toDoText.innerHTML= toDo.description;
     toDoText.id= index;
 
-    if (this.complete){
+    if (toDo.complete){
       toDoText.classList.add("completeText")
     }
 
     toDoText.parentElement = toDoShell;
+
+    toDoText.addEventListener("click", completeToDo());
 
     return toDoShell;
 }
@@ -78,7 +80,9 @@ function buildToDo(toDo, index) {
 
 function buildToDos(toDos) {
   // Tu código acá:
-  //var newArr = toDos.map(buildToDo())
+  //return toDos.map((todo, index)=>{
+    //return buildToDo(todo, index);
+  //});
   var newArr =[];
   
     for (let i=0;i<toDos.length;i++){
@@ -102,7 +106,14 @@ function buildToDos(toDos) {
 
 function displayToDos() {
   // Tu código acá:
+  var toDoContainer= document.getElementById("toDoContainer");
+  toDoContainer.innerHTML="";
+  
+  var newArr= buildToDos(toDoItems);
 
+  for (let i=0;i<newArr.length;i++){
+    toDoContainer.appendChild(newArr[i]);
+  }
 }
 
 
@@ -118,6 +129,11 @@ function displayToDos() {
 function addToDo() {
   // Tu código acá:
 
+  var toDoInput = document.getElementById("toDoInput");
+  var newTodo= new ToDo (toDoInput.value);
+  toDoItems.push(newTodo);
+  toDoInput.value="";
+  displayToDos();
 }
 
 // Agregar un 'Event Listener' para que cada vez que el botón 'AGREGAR' sea clickeado
@@ -126,7 +142,8 @@ function addToDo() {
 //   2) Agregarle un 'click' event listener, pasándole la función 'addToDo' como callback
 
 // Tu código acá:
-
+  var button = document.getElementById("addButton");
+  button.addEventListener("click", addToDo());
 
 // La función completeToDo se va a ejecutar cuando queramos completar un todo
 // [NOTA: Algunas cuestiones a tener en cuenta
@@ -142,8 +159,10 @@ function addToDo() {
 
 function completeToDo(event) {
   // DESCOMENTAR LA SIGUIENTE LINEA
-  // const index = event.target.id;
+      const index = event.target.id;
   // Tu código acá:
+    toDoItems[index].completeToDo();
+    displayToDos();
 
 }
 
@@ -164,7 +183,7 @@ function completeToDo(event) {
 
 
 // Acá debes insertar la llamada a 'displayToDos'
-
+displayToDos();
 
 // ---------------------------- NO CAMBIES NADA DE ACÁ PARA ABAJO ----------------------------- //
 if (typeof module !== 'undefined') {
