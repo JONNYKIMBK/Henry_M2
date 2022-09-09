@@ -7,7 +7,9 @@
 // agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
 // Tu código acá:
 
-document.getElementById("createdBy").innerHTML= "Aplicacion creada por Jonathan"
+let spn = document.getElementById("createdBy");
+
+spn.innerHTML= spn.innerHTML + " " + "Jonathan";
 
 // Crear una clase denominada 'ToDo' cuyo constructor debe recibir un único parámetro del tipo string
 // con el nombre 'description' que será justamente la descripción del ToDo.
@@ -56,20 +58,31 @@ ToDo.prototype.completeToDo= function(){
 
 function buildToDo(toDo, index) {
   // Tu código acá:
+    //1
     var toDoShell = document.createElement("div");
+    //2
     toDoShell.classList.add("toDoShell");
+    //3
     var toDoText =document.createElement("span");
+    //4
     toDoText.innerHTML= toDo.description;
+    //5
     toDoText.id= index;
 
+    //6
     if (toDo.complete){
       toDoText.classList.add("completeText")
     }
 
-    toDoText.parentElement = toDoShell;
+    //listener
+    toDoText.addEventListener("click", completeToDo);
 
-    toDoText.addEventListener("click", completeToDo());
+    //7
+    //toDoShell.appendChild(toDoText);
+    toDoShell.appendChild(toDoText);
 
+
+    //8
     return toDoShell;
 }
 
@@ -83,13 +96,16 @@ function buildToDos(toDos) {
   //return toDos.map((todo, index)=>{
     //return buildToDo(todo, index);
   //});
-  var newArr =[];
-  
+  //var newArr =[];
+  var newArr = toDos.map(function(elemento, index){
+    return buildToDo(elemento, index);
+  })
+  /*
     for (let i=0;i<toDos.length;i++){
       var value= buildToDo(toDos[i])
       newArr.push(value);
     }
-  
+  */
 
   return newArr;
 }
@@ -106,14 +122,16 @@ function buildToDos(toDos) {
 
 function displayToDos() {
   // Tu código acá:
+  //1
   var toDoContainer= document.getElementById("toDoContainer");
+  //2
   toDoContainer.innerHTML="";
-  
+  //3 
   var newArr= buildToDos(toDoItems);
 
-  for (let i=0;i<newArr.length;i++){
-    toDoContainer.appendChild(newArr[i]);
-  }
+  newArr.map(function(elemento){
+    toDoContainer.append(elemento);
+  });
 }
 
 
@@ -128,11 +146,14 @@ function displayToDos() {
 
 function addToDo() {
   // Tu código acá:
-
+  //1
   var toDoInput = document.getElementById("toDoInput");
   var newTodo= new ToDo (toDoInput.value);
+  //2
   toDoItems.push(newTodo);
-  toDoInput.value="";
+  //3
+  document.getElementById("toDoInput").value="";
+  //4
   displayToDos();
 }
 
@@ -143,7 +164,7 @@ function addToDo() {
 
 // Tu código acá:
   var button = document.getElementById("addButton");
-  button.addEventListener("click", addToDo());
+  button.addEventListener("click", addToDo);
 
 // La función completeToDo se va a ejecutar cuando queramos completar un todo
 // [NOTA: Algunas cuestiones a tener en cuenta
@@ -159,10 +180,14 @@ function addToDo() {
 
 function completeToDo(event) {
   // DESCOMENTAR LA SIGUIENTE LINEA
-      const index = event.target.id;
+    const index = event.target.id;
   // Tu código acá:
+    //1
     toDoItems[index].completeToDo();
+    //2
     displayToDos();
+    
+
 
 }
 
