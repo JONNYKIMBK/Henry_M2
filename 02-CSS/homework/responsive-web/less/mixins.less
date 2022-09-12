@@ -1,1 +1,50 @@
 // Mixins acá
+
+.flex(@direction: row, @justify: center, @align){
+    display: flex;
+    flex-direction: @direction;
+    justify-content: @justify;
+    align-items: @align;
+}
+
+.miBoton(@bg-color, @font-color){
+    background-color: @bg-color;
+    color: @font-color;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+
+    &:hover{
+        background-color: @font-color;
+        color: @bg-color;
+        cursor: pointer;
+    }
+}
+
+// @color: #23293B;
+// @borders: 10px;
+
+// .buton{
+//     background-color: @color;
+//     border-radius: @borders;
+//     color: white;
+// }
+
+// .btn{
+//     .buton();
+    
+//     line-height: 30px;
+//     text-align: center;
+//     width: 80px;
+//     height: 30px;
+//     font-size: x-small;
+    
+// }
+
+// .btn:hover {
+//     background-color: greenyellow;
+//     color: black;
+// }
+
+

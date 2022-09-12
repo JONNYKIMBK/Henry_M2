@@ -4,6 +4,11 @@
 
   .intro {
 
+    img{
+      border-radius: 20px;
+      margin-top: 5px;
+    }
+
     h2 {
       padding: 15px;
     }
@@ -24,6 +29,18 @@
       margin: 20px 2.5%;
       border-radius: 20px;
       height: 100%;
+    }
+
+    .tecnologia, .ondas{
+      @media @phone{
+        display none;
+      }
+    }
+
+    .auricular{
+      @media @phone{
+        display: 100%;
+      }
     }
   }
 
@@ -46,6 +63,10 @@
     display: flex;
     justify-content: center;
 
+    @media @phone{
+      .flex(column-reverse);
+      padding: 15px;
+    }
     .actual-text {
       width: 50%;
 
@@ -57,8 +78,14 @@
         margin-bottom: 26px;
       }
 
-      .btn {
+      .btn{
+        .miBoton(@btn-bg-color, @wild-sand);
+        @media @phone {
+          width: 100%;
+        }
       }
+      
+     
     }
 
     .actual-img {
