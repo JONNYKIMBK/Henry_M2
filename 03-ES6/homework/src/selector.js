@@ -7,9 +7,17 @@ var traverseDomAndCollectElements = function(matchFunc, startEl) {
 
   // recorre el árbol del DOM y recolecta elementos que matchien en resultSet
   // usa matchFunc para identificar elementos que matchien
+  if(matchFunc(startEl)) resultSet.push(startEl);
+
+
+  //recorrer los hijos
+  for (let i = 0; i < startEl.children.length; i++) {
+    let result = traverseDomAndCollectElements(matchFunc, startEl.children[i])
+    resultSet = [...resultSet,...result];
+  }
 
   // TU CÓDIGO AQUÍ
-  
+  return resultSet;
 };
 
 // Detecta y devuelve el tipo de selector
