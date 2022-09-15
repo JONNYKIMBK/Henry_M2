@@ -45,7 +45,7 @@ var matchFunctionMaker = function(selector) {
   if (selectorType === "id") { 
     matchFunction= function(el){
       
-      return el.id && (el.id.toLowerCase()===sel.toLowerCase());
+      return el.id && (el.id===sel);
     }
   } else if (selectorType === "class") {
     matchFunction=function(el){
@@ -53,10 +53,14 @@ var matchFunctionMaker = function(selector) {
     }
   } else if (selectorType === "tag.class") {
       matchFunction=function(el){
-        let index= selector.indexOf(".");
-        let selClass=selector.substring(index+1);
-        let selTag=selector.substring(0,index);
-        return (el.tagName.toLowerCase()===selTag.toLowerCase()) && el.classList.contains(selClass);
+        // let index= selector.indexOf(".");
+        // let selClass=selector.substring(index+1);
+        // let selTag=selector.substring(0,index);
+        // return (el.tagName.toLowerCase()===selTag.toLowerCase()) && el.classList.contains(selClass);
+
+        //destructuring, separamos el tag de la class y usamos recursividad
+        let [tag, clas] = selector.split(".");
+        return matchFunctionMaker(tag)(el) && matchFunctionMaker("."+clas)(el);
       }
   } else if (selectorType === "tag") {
       matchFunction=function(el){
