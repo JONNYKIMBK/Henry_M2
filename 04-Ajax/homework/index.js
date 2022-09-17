@@ -33,27 +33,32 @@ $("#search").click(function(){
 
     let id= document.getElementById("input").value;
     $.get("http://localhost:5000/amigos/"+id,function(obj){
-        //limpia el elemento httml para que no se reinprima el contenido
+
+        //limpia el elemento para que no se dupliquen los span
         $("#amigo").empty();
         let amigo= obj.name;
-        //se crea el elemto texto
+        //se crea el elemento texto
         let textamigo= document.createElement("h4");
         textamigo.innerHTML=amigo;
         $("#amigo").append(textamigo);
     })
 })
 
-
+//funcion de borrado
 $("#delete").click(function(){
-
+    //valor del input id
     let id= document.getElementById("inputDelete").value;
+    //elimina el objeto de ese id
     $.ajax({
         url: "http://localhost:5000/amigos/"+id,
         type: "DELETE"
     });
 
+    //limpia el elemento para que no se dupliquen los span
     $("#success").empty();
+    //se crea el elemento de texto
     let borrado= document.createElement("h4");
     borrado.innerHTML= ("El amigo " + id + " fue borrado con exito");
+    //se inserta el elemento como child
     $("#success").append(borrado);
 })
