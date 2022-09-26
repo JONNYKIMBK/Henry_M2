@@ -8,8 +8,18 @@ export default function Card(props) {
       {/* Card Component */}
       <button onClick={props.onClose}>X</button>
       <h2>{props.name}</h2>
-      <h3>Min: {props.min} - Max: {props.max}</h3>
-      <img src={`http://openweathermap.org/img/wn/${props.img}@2x.png`} alt="" />
+      
+      <div>
+        <h3>Min:</h3>
+        <p>{props.min}</p>
+      </div>
+
+      <div>
+        <h3>Max:</h3>
+        <p>{props.max}</p>
+      </div>
+
+      <img src={`http://openweathermap.org/img/wn/${props.img}@2x.png`} alt="icon" />
 
     </div>
 
