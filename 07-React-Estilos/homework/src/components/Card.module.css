@@ -1,0 +1,26 @@
+.boton{
+    background-color: red;
+    color: white;
+    position: relative;
+    left: 45%;
+    margin-top: 2%;
+    border-radius: 5px;
+}
+
+.cuadro{
+    border: solid grey;
+    border-radius: 5px;
+    width: 30%;
+    display: inline-block;
+    justify-content: center;
+    margin: 1%;
+    
+}
+
+.columnas{
+    width: 30%;
+    display: inline-block;
+    align-self: auto;
+    
+}
+
