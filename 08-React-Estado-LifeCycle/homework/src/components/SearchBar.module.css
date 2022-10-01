@@ -1,0 +1,12 @@
+.input{
+    border: solid grey;
+    border-radius: 5px;
+}
+
+.agregar{
+    border: solid green 1px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: green;
+}
+
