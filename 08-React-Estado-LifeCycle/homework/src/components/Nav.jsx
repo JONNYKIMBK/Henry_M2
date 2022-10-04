@@ -11,8 +11,6 @@ function Nav({onSearch}) {
 
         Henry - Weather App 
 
-        
-
       </span>
 
       <SearchBar className="searchBar" onSearch={onSearch} />
