@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import "./Form.css";
 
 export function validate(input){
   let errors = {};
@@ -47,7 +48,7 @@ export default function  Form() {
 
   return (
     <form>
-      <div>
+      <div className='contenedor'>
         <div>
           <label>Username:</label>
           <input 
@@ -74,9 +75,9 @@ export default function  Form() {
           )}
 
         </div>
-          <input type="submit" name="submit" value="Submit" />
+          <input className='boton' type="submit" name="submit" value="Submit" />
       </div>
-      ...
+      
     </form>
   )
 }
