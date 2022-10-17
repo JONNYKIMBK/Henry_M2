@@ -1,10 +1,11 @@
-export const GETMOVIES= "GETMOVIES";
-export const GETMOVIEDETAIL="GETMOVIEDETAIL";
-export const ADDMOVIEFAVORITE="ADDMOVIEFAVORITE";
-export const REMOVEMOVIEFAVORITE="REMOVEMOVIEFAVORITE";
-export const CLEARDETAIL="CLEARDETAIL";
+export const GET_MOVIES= "GET_MOVIES";
+export const GET_MOVIE_DETAIL="GET_MOVIE_DETAIL";
+export const ADD_MOVIE_FAVORITE="ADD_MOVIE_FAVORITE";
+export const REMOVE_MOVIE_FAVORITE="REMOVE_MOVIE_FAVORITE";
+export const CLEAR_DETAIL="CLEAR_DETAIL";
 
 const apiKey="db5e4b74"
+
 
 
 
@@ -13,7 +14,7 @@ export function getMovies(titulo) {
       return fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${titulo}`)
         .then(response => response.json())
         .then(json => {
-          dispatch({ type: GETMOVIES, payload: json });
+          dispatch({ type: GET_MOVIES, payload: json });
         });
     };
   }
@@ -23,27 +24,27 @@ export function getMovieDetail(id) {
       return fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
         .then(response => response.json())
         .then(json => {
-          dispatch({ type: GETMOVIEDETAIL, payload: json });
+          dispatch({ type: GET_MOVIE_DETAIL, payload: json });
         });
     };
   }
 
 export const addMovieFavorite=(payload)=>{
     return{
-        type: ADDMOVIEFAVORITE,
+        type: ADD_MOVIE_FAVORITE,
         payload,
     }
 }
 
 export function removeMovieFavorite(payload){
     return{
-        type: REMOVEMOVIEFAVORITE,
+        type: REMOVE_MOVIE_FAVORITE,
         payload,
     }
 }
 
 export function clearDetails(){
   return{
-    type: CLEARDETAIL,
+    type: CLEAR_DETAIL,
   }
 }

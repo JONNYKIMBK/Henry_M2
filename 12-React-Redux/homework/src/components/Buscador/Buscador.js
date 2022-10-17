@@ -49,7 +49,7 @@ export class Buscador extends Component {
          {/* Aqui tienes que escribir tu codigo para mostrar la lista de peliculas */
             
             this.props.movies?.map((movie) => (
-            <li>
+            <li key={movie.imdbID}>
               <span>
                 <Link to={`/movie/${movie.imdbID}`} > 
                   {movie.Title}

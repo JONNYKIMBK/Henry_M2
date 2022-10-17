@@ -14,8 +14,8 @@ export class ConnectedList extends Component {
         <h2>Películas Favoritas</h2>
         <ul>
           {/* Aqui deberias poner tu lista de peliculas! */
-            this.props.moviesFavourites.map((movie)=>(
-              <li>
+            this.props.moviesFavourites?.map((movie)=>(
+              <li key={movie.id}>
                 <span>
                   <Link to={`/movie/${movie.id}`} > 
                   {movie.title}

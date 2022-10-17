@@ -1,4 +1,4 @@
-import { ADDMOVIEFAVORITE, CLEARDETAIL, GETMOVIEDETAIL, GETMOVIES, REMOVEMOVIEFAVORITE } from "../actions";
+import { ADD_MOVIE_FAVORITE, CLEAR_DETAIL, GET_MOVIE_DETAIL, GET_MOVIES, REMOVE_MOVIE_FAVORITE } from "../actions";
 
 
 const initialState = {
@@ -10,19 +10,19 @@ const initialState = {
 
 function rootReducer(state=initialState, action){
     switch(action.type){
-        case ADDMOVIEFAVORITE:
+        case ADD_MOVIE_FAVORITE:
             return{
                 ...state,
                 moviesFavourites: [...state.moviesFavourites, action.payload],
             }
 
-        case GETMOVIES:
+        case GET_MOVIES:
             return{
                 ...state,
                 moviesLoaded: action.payload.Search,
             }
 
-        case REMOVEMOVIEFAVORITE:
+        case REMOVE_MOVIE_FAVORITE:
             return{
                 ...state,
                 moviesFavourites: state.moviesFavourites.filter(
@@ -30,13 +30,13 @@ function rootReducer(state=initialState, action){
                 )
             }
 
-        case GETMOVIEDETAIL:
+        case GET_MOVIE_DETAIL:
             return{
                 ...state,
                 movieDetail: action.payload,
             }
 
-        case CLEARDETAIL:
+        case CLEAR_DETAIL:
             return{
                 ...state,
                 movieDetail:{}
