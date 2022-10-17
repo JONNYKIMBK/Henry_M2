@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
+import { addMovieFavorite, getMovies } from "../../actions";
 import './Buscador.css';
 
 
@@ -11,12 +12,19 @@ export class Buscador extends Component {
     this.state = {
       title: ""
     };
+    // this.handleChange=this.handleChange.bind(this);
+    // this.handleSubmit=this.handleSubmit.bind(this);
+
   }
   handleChange(event) {
     this.setState({ title: event.target.value });
   }
   handleSubmit(event) {
     event.preventDefault();
+
+    this.props.getMovies(this.state.title)
+
+    this.setState({title:""})
   }
 
   render() {
@@ -38,11 +46,37 @@ export class Buscador extends Component {
           <button type="submit">BUSCAR</button>
         </form>
         <ul>
-         {/* Aqui tienes que escribir tu codigo para mostrar la lista de peliculas */}
+         {/* Aqui tienes que escribir tu codigo para mostrar la lista de peliculas */
+            
+            this.props.movies?.map((movie) => (
+            <li>
+              <span>
+                <Link to={`/movie/${movie.imdbID}`} > 
+                  {movie.Title}
+                </Link>   
+              </span> 
+              {/* para agregar imagen despues */}
+              {/* <img src={movie.Poster}></img> */}
+              <button onClick={()=> this.props.addMovieFavorite({title: movie.Title, id: movie.imdbID}) }>Fav</button> 
+            </li>
+            ))}
         </ul>
       </div>
     );
   }
 }
 
-export default Buscador;
+function mapStateToProps(state){
+  return{
+    movies: state.moviesLoaded,
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return{
+    getMovies: (title)=> dispatch(getMovies(title)),
+    addMovieFavorite: (movie)=> dispatch(addMovieFavorite(movie))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Buscador);
