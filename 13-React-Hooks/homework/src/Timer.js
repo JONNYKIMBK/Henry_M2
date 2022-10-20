@@ -25,7 +25,7 @@ const Timer = () => {
     setActivo(false);
     
     // extra
-    myRef.current.value=null   
+    if(tipo === "Cuenta Regresiva") myRef.current.value=null;
   }
 
   function cambioTipo() {
